@@ -13,6 +13,7 @@ blockify li = takeWhile hashFlip li
 
 
 consumeBlock :: [String] -> Maybe([String], [String])
+consumeBlock [] = Nothing
 consumeBlock li = Just(block, remainder)
     where block = blockify li
           blockLen = length block

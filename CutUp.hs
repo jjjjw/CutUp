@@ -10,7 +10,7 @@ flips = randomRs (0, 9) (mkStdGen 42)  -- Meaningful seed
 
 coinFlip :: String -> Bool
 coinFlip el = flip > 3
-    where flip = head flips
+    where flip = flips !! 0  -- Won't work
 
 
 blockify :: [String] -> [String]

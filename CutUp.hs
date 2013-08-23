@@ -1,15 +1,20 @@
 module CutUp() where
 import Data.Hashable
 import Data.List
+import System.Random
 
 
-hashFlip :: String -> Bool
-hashFlip el = mod hashedEl 2 > 0
-    where hashedEl = hash el
+flips :: [Int]
+flips = randomRs (0, 1) (mkStdGen 42)  -- Meaningful seed
+
+
+coinFlip :: String -> Bool
+coinFlip el = flip > 0
+    where flip = head flips
 
 
 blockify :: [String] -> [String]
-blockify li = takeWhile hashFlip li
+blockify li = takeWhile coinFlip li
 
 
 consumeBlock :: [String] -> Maybe([String], [String])

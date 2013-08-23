@@ -5,11 +5,11 @@ import System.Random
 
 
 flips :: [Int]
-flips = randomRs (0, 1) (mkStdGen 42)  -- Meaningful seed
+flips = randomRs (0, 9) (mkStdGen 42)  -- Meaningful seed
 
 
 coinFlip :: String -> Bool
-coinFlip el = flip > 0
+coinFlip el = flip > 3
     where flip = head flips
 
 

@@ -8,12 +8,12 @@ import System.Random
 moduleRanGen = (mkStdGen 42)  -- Meaningful seed
 
 
-flips :: [Int]
-flips = randomRs (0, 9) moduleRanGen
+ranRange :: [Int]
+ranRange = randomRs (0, 9) moduleRanGen
 
 
 isLucky :: (Int, String) -> Bool
-isLucky (r, s) = r > 3
+isLucky (r, s) = r == 1
 
 
 discardRandoms :: [(Int, String)] -> [String]
@@ -24,7 +24,7 @@ discardRandoms l = block
 makeBlocks :: [String] -> [[String]]
 makeBlocks l = result
   where
-    matrix = zip flips l
+    matrix = zip ranRange l
     predicate = whenElt isLucky
     blocks = S.split predicate matrix
     result = L.map discardRandoms blocks

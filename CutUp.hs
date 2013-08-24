@@ -19,7 +19,7 @@ coinFlip g el = mod (next g) 10 > 3
 takeWhileLucky :: ([String], StdGen) -> ([String], StdGen)
 takeWhileLucky ([], initG) = ([], initG)
 takeWhileLucky ((x:xs), initG)
-               | heads = (x, g) : takeWhileLucky (xs, g)
+               | heads = (x, g) : takeWhileLucky (xs, g)  -- WTF?
                | otherwise =  ([], initG)
                where (heads, g) = coinFlip initG
 

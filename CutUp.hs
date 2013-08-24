@@ -1,6 +1,6 @@
 module CutUp() where
-import Data.Hashable
 import Data.List as L
+import Data.List.Split as S
 import Data.Map as M
 import System.Random
 
@@ -8,8 +8,26 @@ import System.Random
 moduleRanGen = (mkStdGen 42)  -- Meaningful seed
 
 
+flips :: [Int]
+flips = randomRs (0, 9) moduleRanGen
+
+
+isLucky :: (Int, String) -> Bool
+isLucky (r, s) = r > 3
+
+
+discardRandoms :: [(Int, String)] -> [String]
+discardRandoms l = block
+  where (r, block) = unzip l
+
+
 makeBlocks :: [String] -> [[String]]
-makeBlocks l = unfoldr consumeBlock l
+makeBlocks l = result
+  where
+    matrix = zip flips l
+    predicate = whenElt isLucky
+    blocks = S.split predicate matrix
+    result = L.map discardRandoms blocks
 
 
 -- http://www.haskell.org/haskellwiki/Random_shuffle: Section 3.1

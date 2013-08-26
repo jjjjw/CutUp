@@ -1,11 +1,11 @@
-module CutUp() where
+module CutUp(cutUp) where
 import Data.List as L
 import Data.List.Split as S
 import Data.Map as M
 import System.Random
 
 
-moduleRanGen = (mkStdGen 42)  -- Meaningful seed
+moduleRanGen = (mkStdGen 42)
 
 
 ranRange :: [Int]
@@ -49,4 +49,16 @@ fisherYates gen l =
 
 shuffleBlocks :: [[String]] -> [[String]]
 shuffleBlocks l = r
-    where (r, g) = (fisherYates moduleRanGen l)
+  where (r, g) = (fisherYates moduleRanGen l)
+
+
+cutUp :: String -> String
+cutUp corpus = reconstituted
+  where
+    asList = words corpus
+    blocks = makeBlocks asList
+    reordered = shuffleBlocks blocks
+    reconstituted = unwords (concat reordered)
+
+-- Simple test
+main = print (cutUp "The sky above the port was the color of television, tuned to a dead channel.")

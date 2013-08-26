@@ -22,12 +22,12 @@ discardRandoms l = block
 
 
 makeBlocks :: [String] -> [[String]]
-makeBlocks l = result
+makeBlocks l = unmatrix
   where
     matrix = zip ranRange l
     predicate = whenElt isLucky
     blocks = S.split predicate matrix
-    result = L.map discardRandoms blocks
+    unmatrix = L.map discardRandoms blocks
 
 
 -- http://www.haskell.org/haskellwiki/Random_shuffle: Section 3.1
@@ -48,8 +48,8 @@ fisherYates gen l =
 
 
 shuffleBlocks :: [[String]] -> [[String]]
-shuffleBlocks l = r
-  where (r, g) = (fisherYates moduleRanGen l)
+shuffleBlocks l = shuffled
+  where (shuffled, g) = (fisherYates moduleRanGen l)
 
 
 cutUp :: String -> String

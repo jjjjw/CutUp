@@ -1,7 +1,7 @@
 module FoldIn(foldIn) where
 import Data.List.Split
 
--- Create pseudo-lines from text, 30 characters per "line".
+-- Create pseudo-lines from text, 15 characters per "line".
 lineize :: String -> [String]
 lineize s = chunk 15 s
 

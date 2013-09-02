@@ -3,7 +3,7 @@ import Data.List.Split
 
 -- Create pseudo-lines from text, 15 characters per "line".
 lineize :: String -> [String]
-lineize s = chunk 15 s
+lineize = chunk 15
 
 
 fold :: String -> ([String], [String])
@@ -17,7 +17,7 @@ fold s = bisected
 foldIn :: String -> String -> String
 foldIn s1 s2 = concat spliced
   where
-    spliced = (fst (fold s1)) ++ (snd (fold s2))
+    spliced = fst (fold s1) ++ snd (fold s2)
 
 
 main =

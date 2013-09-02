@@ -5,7 +5,7 @@ import Data.Map as M
 import System.Random
 
 
-moduleRanGen = (mkStdGen 42)
+moduleRanGen = mkStdGen 42
 
 
 ranRange :: [Int]
@@ -49,7 +49,7 @@ fisherYates gen l =
 
 shuffleBlocks :: [[String]] -> [[String]]
 shuffleBlocks l = shuffled
-  where (shuffled, g) = (fisherYates moduleRanGen l)
+  where (shuffled, g) = fisherYates moduleRanGen l
 
 
 cutUp :: String -> String
